@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Find the Penguins</title>
+        <meta charset="utf-8">
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        
+        <script type="text/javascript">
+            var score = 0;
+            function replyClick(id){
+                idd = id.id;
+                const element = document.querySelector('#' + idd);
+                const style = getComputedStyle(element);
+                const imgg = "url(./images/" + idd + ".png)";
+                document.getElementById(idd).style.backgroundImage = imgg;
+                if(idd == "yeti"){
+                    score = 0;
+                    document.getElementById("score").innerHTML = "score " + score;               
+                }else{
+                    var audioElement = new Audio("./Circus-clown-horn-sound.mp3");
+                    audioElement.play();
+                    score++;
+                    document.getElementById("score").innerHTML = "score " + score;
+
+                }                
+
+                if(score > localStorage["highScore"]){
+                    localStorage["highScore"] = score;
+                }
+                
+                if(typeof localStorage["highScore"] !== 'undefined'){
+                    document.getElementById("highscore").innerHTML = "high score " + localStorage["highScore"];
+                }
+
+                document.getElementById(idd).onclick = null;
+                
+                
+            }        
+        </script>
+        
+    </head>
+    <body>
+        <div id="gameholder">
+            <div id="title"></div>
+            <div id="score">0</div><br><br><br><br><br>
+            <div id="highscore">0</div>
+<!--
+            <div id="penguin1"></div>
+            <div id="penguin2"></div>
+            <div id="penguin3"></div>
+            <div id="penguin4"></div>
+            <div id="penguin5"></div>
+            <div id="penguin6"></div>
+            <div id="penguin7"></div>
+            <div id="penguin8"></div>
+            <div id="yeti"></div>
+-->
+        </div>
+    </body>
+</html>
